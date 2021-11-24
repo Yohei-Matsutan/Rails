@@ -7,11 +7,18 @@ class TodolistsController < ApplicationController
 
   def create
     # データを新規登録するためのインスタンス作成
-    list = List.new(list_params)
-    # データをデータベースに保存
-    list.save
-    # リダイレクト
-    redirect_to todolist_path(list.id)
+    @list = List.new(list_params)
+    # .saveメソッドは、saveしつつ(?)それが成功すればtrueを返す
+    if @list.save
+      # リダイレクト
+      redirect_to todolist_path(@list.id)
+    else
+      # render :アクション名で、同じコントローラ内の別アクションのViewを表示
+      # @listにはエラーの内容が記入される
+      render :new
+    end
+
+
   end
 
   def index
@@ -36,7 +43,7 @@ class TodolistsController < ApplicationController
   # ストロングパラメータを定義
   def list_params
     # viewにあるlist内のtitleとbodyに入力されたデータをlist_paramsに格納
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
   end
 
 
