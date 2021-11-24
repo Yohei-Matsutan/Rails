@@ -1,6 +1,7 @@
 <h1>新規投稿</h1>
 
 <!--form_with部分-->
+<!--指定したurlに対してpostメソッドでリクエストを行う-->
 <%= form_with model:@list, url:'/todolists', local:true do |f| %>
 
   <h4>タイトル</h4>
