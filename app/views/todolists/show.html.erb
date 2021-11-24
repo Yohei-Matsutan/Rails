@@ -4,7 +4,7 @@
 <p><%= @list.body %></p>
 
 <p>画像</p>
-<%= attachment_image_tag @list, :image, :fill, 300, 300, format: 'jpeg' %>
+<%= attachment_image_tag @list, :image, format: 'jpeg', size: "300x300" %>
 
 <span>
     <!--ここ自分で書いたの偉い-->
